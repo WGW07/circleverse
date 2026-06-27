@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CircleVerse — Four Souls One Story</title>
+
+<!-- ===================== CDN LIBRARIES ===================== -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-title">CircleVerse</div>
+  <div class="loader-bar-track"><div class="loader-bar-fill" id="loaderFill"></div></div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ============ PAGE TRANSITION ============ -->
+<div id="page-transition"></div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <div class="nav-logo">Circle<span>Verse</span></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#dashboard" class="nav-link active" data-target="dashboard">Home</a>
+    <a href="#members" class="nav-link" data-target="members">Members</a>
+    <a href="#gallery" class="nav-link" data-target="gallery">Gallery</a>
+    <a href="#timeline" class="nav-link" data-target="timeline">Timeline</a>
+    <a href="#games" class="nav-link" data-target="games">Games</a>
+    <a href="#guestbook" class="nav-link" data-target="guestbook">Guestbook</a>
+  </div>
+  <div class="nav-tools">
+    <button class="icon-btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    <button class="icon-btn" id="navBurger" title="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- ============ 1. DASHBOARD ============ -->
+<section id="dashboard" class="section">
+  <div id="particles-js"></div>
+  <div class="blob-bg">
+    <div class="blob" style="width:340px;height:340px;background:var(--kevin);top:-80px;left:-60px;"></div>
+    <div class="blob" style="width:280px;height:280px;background:var(--nia);bottom:-60px;right:-40px; animation-delay:3s;"></div>
+    <div class="blob" style="width:220px;height:220px;background:var(--rohi);top:40%;left:70%; animation-delay:6s;"></div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dash-content">
+      <div class="dash-eyebrow" id="typedTarget"></div>
+      <h1 class="dash-title">Circle<span class="accent">Verse</span></h1>
+      <p class="dash-subtitle">Four Souls, One Story</p>
+
+      <div class="dash-meta">
+        <div><b id="liveClock">00:00:00</b>Local Time</div>
+        <div><b id="liveDate">--/--/----</b>Today</div>
+        <div><b id="memberCountUp">4</b>Best Friends</div>
+      </div>
+
+      <p class="dash-quote" id="dashQuote">"Kenangan tak pernah tamat, ia hanya pindah halaman."</p>
+
+      <div class="dash-buttons">
+        <button class="btn-magnetic btn-primary magnetic" data-goto="members">Explore Circle <i class="fa-solid fa-arrow-right"></i></button>
+        <button class="btn-magnetic btn-outline magnetic" data-goto="gallery">View Memories</button>
+      </div>
+    </div>
+
+    <div class="memory-board-wrap" id="memoryBoard">
+      <div class="memory-board-bg"></div>
+      <div class="mb-banner" id="mbBanner">CircleVerse ✦</div>
+
+      <div class="mb-photo mb-floating" id="mb1" style="--r:-6deg; width:46%; top:14%; left:6%; z-index:3;">
+        <img src="https://picsum.photos/seed/circleboard1/240/300" alt="kenangan 1">
+        <div class="mb-cap">geng kampus 🎓</div>
+      </div>
+      <div class="mb-photo mb-floating" id="mb2" style="--r:5deg; width:42%; top:6%; left:48%; z-index:4; animation-delay:.4s;">
+        <img src="https://picsum.photos/seed/circleboard2/240/260" alt="kenangan 2">
+        <div class="mb-cap">healing time 🌊</div>
+      </div>
+      <div class="mb-photo mb-floating" id="mb3" style="--r:-3deg; width:40%; top:44%; left:4%; z-index:5; animation-delay:.8s;">
+        <img src="https://picsum.photos/seed/circleboard3/220/260" alt="kenangan 3">
+        <div class="mb-cap">nugas bareng 📚</div>
+      </div>
+      <div class="mb-photo mb-floating" id="mb4" style="--r:7deg; width:48%; top:50%; left:42%; z-index:6; animation-delay:1.2s;">
+        <img src="https://picsum.photos/seed/circleboard4/250/300" alt="kenangan 4">
+        <div class="mb-cap">wisuda 2026 🎉</div>
+      </div>
+
+      <div class="mb-sticky" id="mbSticky1" style="top:2%; left:2%; background:var(--tape); color:var(--ink);">est. 2024</div>
+      <div class="mb-sticky" id="mbSticky2" style="bottom:4%; right:4%; background:var(--anas); color:#fff;">4ever circle</div>
+
+      <div class="mb-pin" id="mbPin1" style="top:11%; left:28%;"></div>
+      <div class="mb-pin" id="mbPin2" style="top:3%; left:68%;"></div>
+      <div class="mb-pin" id="mbPin3" style="top:41%; left:24%;"></div>
+      <div class="mb-pin" id="mbPin4" style="top:47%; left:64%;"></div>
+    </div>
+  </div>
+</section>
+
+<button id="music-toggle" title="Play music">
+  <i class="fa-solid fa-play" id="musicIcon"></i>
+</button>
+
+<!-- ============ 2. MEMBERS ============ -->
+<section id="members" class="section">
+  <div class="blob-bg">
+    <div class="blob" style="width:300px;height:300px;background:var(--anas);top:10%;right:-80px;"></div>
+  </div>
+  <div class="section-label">Page 02 — The Circle</div>
+  <h2 class="section-title">Members</h2>
+  <p class="section-sub">Empat orang, empat warna, satu cerita. Klik kartu untuk membuka biodata lengkap.</p>
+
+  <div class="members-grid">
+    <div class="member-card tilt-card" data-member="kevin" style="--mc:var(--kevin);">
+      <div class="member-avatar"><i class="fa-solid fa-laptop-code"></i></div>
+      <h3>Kevin</h3><span class="nick">Robby Kevin · @kev.codes</span>
+      <p class="major">Teknik Informatika — Universitas Brawijaya</p>
+      <div class="member-tags"><span>Backend</span><span>Gaming</span><span>Kopi Hitam</span></div>
+      <div class="open-hint">Lihat profil →</div>
+    </div>
+
+    <div class="member-card tilt-card" data-member="anas" style="--mc:var(--anas);">
+      <div class="member-avatar"><i class="fa-solid fa-basketball"></i></div>
+      <h3>Anas</h3><span class="nick">Narul Anas · @anasdunks</span>
+      <p class="major">Teknik Informatika — Universitas Negeri Surabaya</p>
+      <div class="member-tags"><span>Basket</span><span>Vlog</span><span>Mie Ayam</span></div>
+      <div class="open-hint">Lihat profil →</div>
+    </div>
+
+    <div class="member-card tilt-card" data-member="nia" style="--mc:var(--nia);">
+      <div class="member-avatar"><i class="fa-solid fa-palette"></i></div>
+      <h3>Nia</h3><span class="nick">Imada Nathania · @nia.draws</span>
+      <p class="major">Teknik Informatika — ITS</p>
+      <div class="member-tags"><span>Ilustrasi</span><span>K-Pop</span><span>Matcha</span></div>
+      <div class="open-hint">Lihat profil →</div>
+    </div>
+
+    <div class="member-card tilt-card" data-member="novel" style="--mc:var(--rohi);">
+      <div class="member-avatar"><i class="fa-solid fa-book-open"></i></div>
+      <h3>Novel</h3><span class="nick">Novelia Putri · @novel.writes</span>
+      <p class="major">Teknik Informatika — Universitas Airlangga</p>
+      <div class="member-tags"><span>Menulis</span><span>Senja</span><span>Thai Tea</span></div>
+      <div class="open-hint">Lihat profil →</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MEMBER DETAIL MODAL ============ -->
+<div id="memberModal">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-grid" id="modalGrid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============ 4. GALLERY ============ -->
+<section id="gallery" class="section">
+  <div class="section-label">Page 04 — Memory Wall</div>
+  <h2 class="section-title">Gallery</h2>
+  <p class="section-sub">Wisuda, kafe, belajar, nongkrong, sampai healing — semua kenangan kami terpasang di papan ini.</p>
+
+  <div class="gallery-toolbar">
+    <button class="gallery-filter active" data-filter="all">Semua</button>
+    <button class="gallery-filter" data-filter="wisuda">Wisuda</button>
+    <button class="gallery-filter" data-filter="cafe">Cafe</button>
+    <button class="gallery-filter" data-filter="belajar">Belajar</button>
+    <button class="gallery-filter" data-filter="nongkrong">Nongkrong</button>
+    <button class="gallery-filter" data-filter="healing">Healing</button>
+    <button class="gallery-filter shuffle-btn" id="shuffleBtn"><i class="fa-solid fa-shuffle"></i> Shuffle</button>
+  </div>
+
+  <div class="masonry" id="masonryGrid"></div>
+</section>
+
+<div id="lightbox">
+  <button class="lb-close" id="lbClose"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lb-nav lb-prev" id="lbPrev"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- ============ 5. TIMELINE ============ -->
+<section id="timeline" class="section">
+  <div class="section-label">Page 05 — Our Story</div>
+  <h2 class="section-title">Timeline</h2>
+  <p class="section-sub">Dari kenal pertama kali sampai wisuda — setiap tahun punya cerita sendiri.</p>
+
+  <div class="timeline-wrap">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-year">2024</span>
+      <div class="timeline-card">
+        <h4>Pertama Kenal</h4>
+        <p>Bertemu di kelas orientasi, ngobrol soal tugas, dan nggak nyangka bakal jadi circle sampai sekarang.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-year">2025</span>
+      <div class="timeline-card">
+        <h4>Nugas Bareng</h4>
+        <p>Begadang ngerjain tugas kelompok, deadline mepet, tapi selalu diselingi tawa dan jajan tengah malam.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-year">2025</span>
+      <div class="timeline-card">
+        <h4>Healing Trip</h4>
+        <p>Liburan kecil ke pantai buat ngademin kepala dari skripsi dan tugas akhir yang nggak ada habisnya.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-year">2026</span>
+      <div class="timeline-card">
+        <h4>Wisuda</h4>
+        <p>Hari yang ditunggu — toga, foto bareng, dan janji buat tetap jadi circle ini selamanya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. MINI GAMES ============ -->
+<section id="games" class="section">
+  <div class="section-label">Page 06 — Play Zone</div>
+  <h2 class="section-title">Mini Games</h2>
+  <p class="section-sub">Selingan seru biar nggak cuma scroll-scroll doang.</p>
+
+  <div class="games-tabs">
+    <button class="game-tab active" data-game="memory">🧠 Memory Card</button>
+    <button class="game-tab" data-game="wheel">🎡 Spin Wheel</button>
+    <button class="game-tab" data-game="quiz">❓ Quiz Circle</button>
+  </div>
+
+  <div class="game-panel active" id="panel-memory">
+    <div class="memory-status" id="memoryStatus">Cocokkan semua pasangan kartu!</div>
+    <div class="memory-grid" id="memoryGrid"></div>
+    <div style="text-align:center;"><button class="btn-magnetic btn-outline magnetic" id="memoryReset">Reset Game</button></div>
+  </div>
+
+  <div class="game-panel" id="panel-wheel">
+    <div class="wheel-wrap">
+      <div id="wheelCanvasWrap">
+        <div class="wheel-pointer">▼</div>
+        <svg id="spinWheel" viewBox="0 0 300 300"></svg>
+      </div>
+      <button class="btn-magnetic btn-primary magnetic" id="spinBtn">Putar Roda!</button>
+      <div class="wheel-result" id="wheelResult"></div>
+    </div>
+  </div>
+
+  <div class="game-panel" id="panel-quiz">
+    <div class="quiz-box">
+      <div class="quiz-progress" id="quizProgress">Soal 1 / 5</div>
+      <div class="quiz-q" id="quizQ"></div>
+      <div id="quizOpts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. GUESTBOOK ============ -->
+<section id="guestbook" class="section">
+  <div class="section-label">Page 07 — Leave a Mark</div>
+  <h2 class="section-title">Guestbook</h2>
+  <p class="section-sub">Tinggalkan jejak dan pesan kamu buat circle ini.</p>
+
+  <div class="guestbook-wrap">
+    <div class="gb-form">
+      <input type="text" id="gbName" placeholder="Nama kamu">
+      <textarea id="gbText" rows="3" placeholder="Tulis pesan untuk CircleVerse..."></textarea>
+      <div class="gb-emojis" id="gbEmojis">
+        <button class="gb-emoji" data-emoji="❤️">❤️</button>
+        <button class="gb-emoji" data-emoji="🔥">🔥</button>
+        <button class="gb-emoji" data-emoji="😂">😂</button>
+        <button class="gb-emoji" data-emoji="🥹">🥹</button>
+        <button class="gb-emoji" data-emoji="🎓">🎓</button>
+      </div>
+      <button class="gb-submit" id="gbSubmit">Kirim Pesan</button>
+    </div>
+    <div class="gb-list" id="gbList"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 CircleVerse — Made with <i class="fa-solid fa-heart" style="color:var(--nia);"></i> by Kevin, Anas, Nia & Novel
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
